@@ -1,0 +1,26 @@
+{
+  "name": "coverage-e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "scripts": {
+    "test": "npx mocha -w *.test.js",
+		"test:cov": "npx nyc npx mocha *.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmoraesdev/coverage-e2e.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmoraesdev/coverage-e2e/issues"
+  },
+  "homepage": "https://github.com/lmoraesdev/coverage-e2e#readme",
+  "devDependencies": {
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3"
+  }
+}

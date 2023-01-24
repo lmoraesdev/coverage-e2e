@@ -1,0 +1,1 @@
+{"processes":{"4d6bcbf3-5a50-4b58-8f13-62c108e0f85b":{"parent":null,"children":["527b7127-2ec7-432b-a5e2-1a31a1e571c6"]},"527b7127-2ec7-432b-a5e2-1a31a1e571c6":{"parent":"4d6bcbf3-5a50-4b58-8f13-62c108e0f85b","children":[]}},"files":{"/home/lmoraesdev/workspace/coverage-e2e/api.js":["527b7127-2ec7-432b-a5e2-1a31a1e571c6"]},"externalIds":{}}
