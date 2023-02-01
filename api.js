@@ -1,29 +1,52 @@
 const http = require("http");
+const MOCKED_USER = { username: "LeandroMoraes", password: "123" };
 
 const routes = {
-	"/contact:get": (request, response) => {
-		response.write("contact us page");
-		return response.end();
+	"/contact:get": (_, res) => {
+		res.write("contact page");
+		res.end();
+		return;
 	},
 
-	default: (request, response) => {
-		response.write("Hello World!");
-		return response.end();
+	"/login:post": async (req, res) => {
+		// Request é um async iterator!
+		for await (const data of req) {
+			const user = JSON.parse(data);
+			if (
+				user.username === MOCKED_USER.username &&
+				user.password === MOCKED_USER.password
+			) {
+				res.write("Logged in successfully");
+				res.end();
+				return;
+			}
+		}
+		res.writeHead(401);
+		res.write("Invalid username or password");
+		res.end();
+		return;
+	},
+
+	default: (_, res) => {
+		res.write("Hello, world");
+		res.end();
+		return;
 	},
 };
 
-const handler = function (request, response) {
-	const { url, method } = request;
+const handler = function (req, res) {
+	const { url, method } = req;
 	const routeKey = `${url}:${method.toLowerCase()}`;
-	const chosen = routes[routeKey] || routes.default
-	response.writeHead(200, {
+	const chosen = routes[routeKey] || routes.default;
+	res.writeHead(200, {
 		"Content-Type": "text/html",
 	});
-	return chosen(request, response);
+	chosen(req, res);
+	return;
 };
 
 const app = http
 	.createServer(handler)
-	.listen(3000, () => console.log("app running at", 3000));
+	.listen(3000, () => console.log("App running on port 3000"));
 
 module.exports = app;
